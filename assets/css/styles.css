@@ -1,9 +1,8 @@
-/* Reset some default styles */
+/* Reset default sytles */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /*padding&border included in width & height
-    to maintain predictable & intuitive sizing.*/
+    box-sizing: border-box;
 }
 
 /* General Baseline Styles */
@@ -19,55 +18,67 @@ body {
     background: linear-gradient(to bottom, #e7eae5, #bbced2);
     padding: 1em 2em;
 }
+
 .nav-brand {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
+
 /* Adjustments for the brand logo and title */
 .nav-brand a {
     display: flex;
     align-items: center;
-    text-decoration: none; /* Removes the underline from the link */
+    text-decoration: none;
+    /* Removes the underline from the link */
     color: black;
 }
+
 .logo {
     height: 40px;
     margin-right: 0.5em;
 }
+
 .title {
     color: black;
     font-size: 1em;
 }
+
 /* Adjustments for the navigation menu */
 .nav-menu {
     list-style: none;
     list-style-type: none;
     display: flex;
 }
+
 /* Adjustments for mobile navigation */
 /* Hiding the button on desktop screens */
 .nav-toggle {
     display: none;
 }
+
 .nav-item {
     margin-left: 2em;
 }
+
 .nav-link {
     text-decoration: none;
     color: #fffcf1;
     font-size: 1em;
     transition: color 0.3s ease-in-out;
 }
+
 .nav-link:hover {
     color: #012536;
 }
+
 /* Hamburger menu - hidden by default */
 .hamburger {
     display: none;
     flex-direction: column;
     cursor: pointer;
 }
+
 /* Three horizontal lines of a hamburger icon.*/
 .hamburger::before,
 .hamburger::after {
@@ -89,11 +100,14 @@ body {
         width: 100%;
         text-align: center;
     }
+
     .logo {
         margin-right: 0;
     }
+
     .title {
-        display: none; /* Ensure the title is not displayed on mobile */
+        display: none;
+        /* Ensure the title is not displayed on mobile */
     }
 
     /* Adjustments for the navigation menu */
@@ -107,6 +121,7 @@ body {
         text-align: center;
         transition: top 0.3s ease-in-out;
     }
+
     .nav-item {
         margin: 1em 0;
     }
@@ -115,6 +130,7 @@ body {
     .hamburger {
         display: flex;
     }
+
     .nav-toggle {
         display: inline;
         position: absolute;
@@ -123,6 +139,7 @@ body {
         margin-right: 25px;
 
     }
+
     /* When nav is toggled */
     .nav-active {
         background: linear-gradient(to top, #e7eae5, #bbced2);
