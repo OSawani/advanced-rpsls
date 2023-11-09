@@ -90,6 +90,26 @@ body {
     transition: all 0.3s ease-in-out;
 }
 
+/* Base styles for each screen */
+.screen {
+    display: none; /* Hide all screens by default */
+    padding: 2em;
+    animation: fadeIn 0.5s ease-in-out forwards; 
+    /* Fade in animation for when screen becomes active */
+}
+/* Show the active screen */
+.screen.active {
+    display: block;
+}
+/* Animation keyframes for fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
 
 /* Media Query for Mobile Devices */
 @media (max-width: 768px) {
