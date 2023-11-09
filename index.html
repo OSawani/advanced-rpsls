@@ -71,17 +71,70 @@
 
     <!-- Main Content Section of SPA with 3 Screens-->
     <main>
-      <!-- Main Screen -->
-      <section></section>
+      <!-- Main Screen - Active by Default -->
+      <section id="main" class="screen active">
+        <!-- 1. Welcome Area -->
+        <div>
+          <h1>Welcome to Rock, Paper, Scissors, Lizard, Spock!</h1>
+          <p>
+            Experience the classic game with a twist. Select Rock, Paper,
+            Scissors, Lizard, or Spock and try to beat the computer. Click below
+            to start playing! Or learn the rules first!
+          </p>
+          <button>Start Game</button>
+          <button>Game Rules</button>
+        </div>
+      </section>
 
       <!-- Play Screen -->
-      <section></section>
+      <section id="play" class="screen">
+        <h2>Let's Play! Choose Difficulty to Get Going.</h2>
+        <!-- 1. Game Settings Area -->
+        <div></div>
+
+        <!-- 2. Game and Round Scores Area -->
+        <div></div>
+
+        <!-- 3. Gameplay Action Area  -->
+        <div>
+          <!-- Player's Choice -->
+          <div></div>
+          <!-- PC's Choice -->
+          <div></div>
+        </div>
+
+        <!-- 4. Gameplay Player's Choices Area -->
+        <div>
+          <!-- Action Buttons-->
+          <div></div>
+          <!-- Last Choice Made-->
+          <div></div>
+        </div>
+
+        <!-- Navigation Buttons Area -->
+        <div>
+          <!-- Rules Button -->
+          <button>Forgot the Rules?</button>
+          <!-- Home Button -->
+          <button>Home</button>
+          <!-- Scoreboard Button -->
+          <button>Player Scoreboard</button>
+        </div>
+      </section>
 
       <!-- Scoreboard Screen -->
-      <section></section>
+      <section id="scoreboard" class="screen">
+        <h2>Scoreboard</h2>
+      </section>
 
       <!-- Instruction Modal -->
-      <dialog></dialog>
+      <dialog id="instructionsModal" class="modal">
+        <div>
+          <h2>Game Instructions</h2>
+          <p></p>
+          <!-- Actual game instructions here go will be included here -->
+        </div>
+      </dialog>
     </main>
 
     <!-- Persistent Footer Section -->
