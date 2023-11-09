@@ -45,7 +45,7 @@ In this plane, I designed the interaction between the user and the application. 
 
 The interface, navigation, and information design were crafted to provide a seamless user experience. This involved creating a consistent layout, ensuring clear pathways for navigating through the game, and presenting game rules and scores in an understandable format. Figma was used to wireframe. 
 
-![Wireframe 1](https://via.placeholder.com/500x300)
+![PLAY Screen Wireframe](https://via.placeholder.com/500x300)
 ![Wireframe 2](https://via.placeholder.com/500x300)
 
 ### Surface Plane
