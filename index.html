@@ -22,6 +22,32 @@
     <header>
         <!-- Navigation Menu -->
         <nav>
+            <!-- Logo & Site Title linked to Main Screen + Other Nav Links-->
+            <div class="nav-brand" id="navLogo">
+                <a>
+                    <!-- Logo as a PNG to preserve photographic elements and intricate patterns -->
+                    <img src="./assets/images/logo.png" alt="Advanced Rock Paper Scissors Logo" class="logo">
+                    <!-- Title next to logo -->
+                    <span class="title">Rock Paper Scissors</span>
+                </a>
+                <!-- Navigation Toggle Button for Smaller Screens -->
+                <button type="button" aria-label="toggle navigation" class="nav-toggle" id="navToggle">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+
+            <!-- A List of Navigation Links -->
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="#rules" class="nav-link">Game Rules</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#play" class="nav-link">PLAY</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#scoreboard" class="nav-link">Scoreboard</a>
+                </li>
+            </ul>
         </nav>
     </header>
 
