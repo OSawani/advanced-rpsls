@@ -15,10 +15,20 @@ document.addEventListener('DOMContentLoaded', function (event) {
         navMenu.classList.toggle('nav-active');
     });
 
-    // Attach the navigateToScreen function to each navigation link
+    // Attach the navigateToScreen or openModal depending on class of navigation link
     let navLinks = document.getElementsByClassName('nav-link');
     Array.from(navLinks).forEach(function (link) {
-        link.addEventListener('click', navigateToScreen);
+        if (link.classList.contains('modal-trigger')) {
+            link.addEventListener('click', openModal);
+        } else {
+            link.addEventListener('click', navigateToScreen);
+        }
+    });
+
+    // querySelector to select all modal trigger element, i.e. nav-link, button on main & play
+    let modalTriggers = document.querySelectorAll('.modal-trigger');
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', openModal);
     });
 });
 
@@ -45,3 +55,21 @@ function navigateToScreen(event) {
     targetScreen.classList.add('active');
 };
 
+let modal = document.getElementById('instructionsModal');
+let closeButton = document.querySelector('.close');
+// Function to open modal
+function openModal() {
+    modal.style.display = 'block';
+}
+// Function to close modal
+function closeModal() {
+    modal.style.display = 'none';
+}
+// Event listener to close modal when clicking on the close button
+closeButton.addEventListener('click', closeModal);
+// Event listener to close modal when clicking outside of the modal content
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        closeModal();
+    }
+});

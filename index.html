@@ -57,7 +57,7 @@
         <!-- A List of Navigation Links -->
         <ul class="nav-menu" id="navMenu">
           <li class="nav-item">
-            <a href="#rules" class="nav-link">Game Rules</a>
+            <a href="#instructionsModal" class="nav-link modal-trigger">Game Rules</a>
           </li>
           <li class="nav-item">
             <a href="#play" class="nav-link">PLAY</a>
@@ -129,10 +129,14 @@
 
       <!-- Instruction Modal -->
       <dialog id="instructionsModal" class="modal">
-        <div>
+        <div class="modal-content">
+          <button type="button" class="close" aria-label="Close instructions">
+            &times;
+          </button>
           <h2>Game Instructions</h2>
-          <p></p>
+          <p>Here are the rules for Rock, Paper, Scissors, Lizard, Spock.</p>
           <!-- Actual game instructions here go will be included here -->
+          <div></div>
         </div>
       </dialog>
     </main>
