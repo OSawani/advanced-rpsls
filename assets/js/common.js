@@ -1,3 +1,10 @@
+/*
+I chose to structure the code into distinct modules
+for better organization and maintainability.
+
+This module will deal with interactivity for navigation and landing page.
+*/
+
 /**
  * Initializes the navigation menu and toggle functionality.
  * @function
