@@ -93,26 +93,26 @@
         <h2>Let's Play! Choose Difficulty to Get Going.</h2>
         <!-- 1. Game Settings Area -->
         <div id="game-mode" class="setting">
-            <label for = "game-mode-select">Game Difficulty</label>
-            <select id="game-mode-select">
-                <option value="single">Single Game</option>
-                <option value="best-of-three">Best of Theree</option>
-            </select>
+          <label for="game-mode-select">Game Difficulty</label>
+          <select id="game-mode-select">
+            <option value="single">Single Game</option>
+            <option value="best-of-three">Best of Theree</option>
+          </select>
         </div>
 
         <!-- 2. Game and Round Scores Area -->
         <div>
-            <h3>Round Score</h3>
-            <div id="round-score" class="score">
-                <span>User: 0</span>
-                <span>Computer: 0</span>
-            </div>
-            <h3>Game Score</h3>
-            <div id="game-score" class="score">
-                <span>User: 0</span>
-                <span>Computer: 0</span>
-            </div>
-            <div id="end-game-message"></div>
+          <h3>Round Score</h3>
+          <div id="round-score" class="score">
+            <span>User: 0</span>
+            <span>Computer: 0</span>
+          </div>
+          <h3>Game Score</h3>
+          <div id="game-score" class="score">
+            <span>User: 0</span>
+            <span>Computer: 0</span>
+          </div>
+          <div id="end-game-message"></div>
         </div>
 
         <!-- 3. Gameplay Action Area  -->
@@ -121,56 +121,85 @@
           <div id="player-section" class="player-section">
             <h3>Player's Area</h3>
             <div id="player-choice" class="choice-container">
-                <!-- Background for Choice -->
-                <img src="./assets/images/choice_background L.png">
-                <!-- Chosen icon will be displayed on top of background in the middle-->
+              <!-- Background for Choice -->
+              <img src="./assets/images/choice_background L.png" />
+              <!-- Chosen icon will be displayed on top of background in the middle-->
             </div>
           </div>
           <!-- PC's Choice -->
           <div id="computer-section" class="computer-section">
             <h3>Computer's Area</h3>
             <div id="computer-choice" class="choice-container">
-                <!-- Background for Choice -->
-                <img src="./assets/images/choice_background_R.png">
-                <!-- Chosen icon will be displayed on top of background in the middle-->
+              <!-- Background for Choice -->
+              <img src="./assets/images/choice_background_R.png" />
+              <!-- Chosen icon will be displayed on top of background in the middle-->
             </div>
           </div>
         </div>
 
         <!-- 4. Gameplay Player's Choices Area -->
         <div>
-            <h3> Choose Wisely!</h3>
-            <!-- Action Buttons-->
-            <div id="action-area" class="action-area">
+          <h3>Choose Wisely!</h3>
+          <!-- Action Buttons-->
+          <div id="action-area" class="action-area">
             <!-- Action buttons with placeholders for icons -->
-            <button type="button" id="rock" class="choice-button" data-choice="rock">
-                <img src="./assets/images/rock.png" alt="Rock" />
+            <button
+              type="button"
+              id="rock"
+              class="choice-button"
+              data-choice="rock"
+            >
+              <img src="./assets/images/rock.png" alt="Rock" />
             </button>
-            <button type="button" id="paper" class="choice-button" data-choice="paper">
-                <img src="./assets/images/paper.png" alt="Paper" />
+            <button
+              type="button"
+              id="paper"
+              class="choice-button"
+              data-choice="paper"
+            >
+              <img src="./assets/images/paper.png" alt="Paper" />
             </button>
-            <button type="button" id="scissors" class="choice-button" data-choice="scissors">
-                <img src="./assets/images/scissors.png" alt="Scissors" />
+            <button
+              type="button"
+              id="scissors"
+              class="choice-button"
+              data-choice="scissors"
+            >
+              <img src="./assets/images/scissors.png" alt="Scissors" />
             </button>
-            <button type="button" id="lizard" class="choice-button" data-choice="lizard">
-                <img src="./assets/images/lizard.png" alt="Lizard" />
+            <button
+              type="button"
+              id="lizard"
+              class="choice-button"
+              data-choice="lizard"
+            >
+              <img src="./assets/images/lizard.png" alt="Lizard" />
             </button>
-            <button type="button" id="spock" class="choice-button" data-choice="spock">
-                <img src="./assets/images/spock.png" alt="Spock" />
+            <button
+              type="button"
+              id="spock"
+              class="choice-button"
+              data-choice="spock"
+            >
+              <img src="./assets/images/spock.png" alt="Spock" />
             </button>
-        </div>
+          </div>
           <!-- Last Choice Made-->
           <div></div>
         </div>
 
         <!-- Navigation Buttons Area -->
         <div>
-            <!-- Rules Button -->
-            <button type="button" class="game-screen-button">Forgot the Rules?</button>
-            <!-- Home Button -->
-            <button type="button" class="game-screen-button">Home</button>
-            <!-- Scoreboard Button -->
-            <button type="button" class="game-screen-button">Player Scoreboard</button>
+          <!-- Rules Button -->
+          <button type="button" class="game-screen-button">
+            Forgot the Rules?
+          </button>
+          <!-- Home Button -->
+          <button type="button" class="game-screen-button">Home</button>
+          <!-- Scoreboard Button -->
+          <button type="button" class="game-screen-button">
+            Player Scoreboard
+          </button>
         </div>
       </section>
 
@@ -198,5 +227,8 @@
 
     <!-- JS Scripts -->
     <script src="./assets/js/common.js"></script>
+    <script src="./assets/js/data-module.js"></script>
+    <script src="./assets/js/game-logic-module.js"></script>
+    <script src="./assets/js/ui-module.js"></script>
   </body>
 </html>

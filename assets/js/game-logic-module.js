@@ -14,17 +14,23 @@ This module will focuse on the rules and flow of the game.
  */
 function playRound(playerChoice) {
     let computerChoice = generateComputerChoice();
+    console.log(`Computer choice: ${computerChoice}`);
     let roundResult = determineWinner(playerChoice, computerChoice);
+    console.log(`Round result: ${roundResult}`);
 
     // Update & save game data (Data Management Module)
     updateAndSaveGameData(gameData, playerChoice, computerChoice, roundResult);
+    console.log('Game data updated and saved');
     // Update UI based on the choices and the round result (UI Module)
     updateChoicesUI(playerChoice, computerChoice);
+    console.log('UI updated with choices');
 
     // Check if the game has ended and handle accordingly
     if (checkForGameEnd(gameData, gameState.mode)) {
+        console.log('Game has ended');
         handleEndOfGameUI(); // From UI Module
     } else {
+        console.log('Preparing for next round');
         prepareForNextRound(); // Reset for the next round
     }
 }
@@ -85,4 +91,5 @@ function checkForGameEnd(gameData, gameMode) {
 function prepareForNextRound() {
     // Logic to reset the game state for the next round
     // This might involve resetting UI elements, timers, etc.
+    console.log('Game state reset for next round');
 }
