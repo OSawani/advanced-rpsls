@@ -59,6 +59,8 @@ let modal = document.getElementById('instructionsModal');
 let closeButton = document.querySelector('.close');
 // Function to open modal
 function openModal() {
+    // Close the hamburger menu if it's open
+    navMenu.classList.remove('nav-active');
     modal.style.display = 'block';
 }
 // Function to close modal
