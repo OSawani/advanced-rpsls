@@ -82,3 +82,11 @@ window.addEventListener('click', (event) => {
         closeModal();
     }
 });
+
+function initializeGame() {
+    initializeGameState(); // Initialize game state
+    loadSavedGameData(); // Load saved game data, if any
+    initializeUIElements(); // Setup initial state of UI elements
+    setupChoiceListeners(); // Setup UI listeners for player choices
+}
+document.addEventListener('DOMContentLoaded', initializeGame);

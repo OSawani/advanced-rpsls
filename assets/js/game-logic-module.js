@@ -13,6 +13,7 @@ This module will focuse on the rules and flow of the game.
  * @param {string} playerChoice - The player's selected choice.
  */
 function playRound(playerChoice) {
+
     let computerChoice = generateComputerChoice();
     console.log(`Computer choice: ${computerChoice}`);
     let roundResult = determineWinner(playerChoice, computerChoice);

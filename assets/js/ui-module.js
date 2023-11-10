@@ -14,10 +14,44 @@ function setupChoiceListeners() {
     const choiceButtons = document.querySelectorAll('.choice-button');
     choiceButtons.forEach(button => {
         button.addEventListener('click', (event) => {
-            const playerChoice = event.target.getAttribute('data-choice');
-            playRound(playerChoice); // Directly calling the game logic function (Game Logic Module)
+            // event.currentTarget to reliably get the button that was clicked,
+            // not the child element <img> that may receive the click.
+            console.log('Current Target:', event.currentTarget);
+            console.log('Target:', event.target);
+
+            // Safely access the button element from the event
+            const buttonElement = event.currentTarget;
+
+            // Check if buttonElement is valid before accessing its attributes
+            if (buttonElement) {
+                const playerChoice = buttonElement.getAttribute('data-choice');
+                if (playerChoice) {
+                    playRound(playerChoice); // Directly calling the game logic function (Game Logic Module)
+                } else {
+                    console.error('data-choice attribute is missing on the button element.');
+                }
+            } else {
+                console.error('Event current target (button element) is undefined.');
+            }
         });
     });
+}
+
+/**
+ * Initializes UI elements at the start of the game.
+ * This includes resetting scores, hiding end-game messages, and setting up the initial state.
+ */
+function initializeUIElements() {
+    // Assuming default or initial game data for resetting scores
+    updateScoresUI(initializeGameData()); // Reset score displays
+
+    // Hide end-game message if present
+    const messageElement = document.getElementById('end-game-message');
+    if (messageElement) {
+        messageElement.style.display = 'none';
+    }
+
+    // Additional UI setup
 }
 
 /**
@@ -92,3 +126,7 @@ function determineEndGameMessage() {
         return "It's a tie! Well played!";
     }
 }
+
+
+// init game
+setupChoiceListeners();
