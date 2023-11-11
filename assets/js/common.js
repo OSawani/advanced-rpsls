@@ -171,6 +171,8 @@ function updateGameData(roundResult, playerChoice, computerChoice) {
             gameData.computerStats.roundsTied++;
             break;
     }
+    saveGameDataToLocalStorage(); // Save updated data to local storage
+    console.log('Game data updated:', gameData);
 }
 /**
  * Resets the game data to its initial state, updates the UI accordingly, and clears any feedback messages.
@@ -207,19 +209,24 @@ function setupChoiceListeners() {
  * and manages the UI updates for the round results.
  * @param {string} playerChoice - The choice made by the player.
  */
+let gameData;
 function handlePlayerChoice(playerChoice) {
     animatePlayerChoice(playerChoice);
     const computerChoice = generateComputerChoice();
+    const roundResult = determineWinner(playerChoice, computerChoice);
+
+    // Update the game data and scoreboard immediately
+    updateGameData(roundResult, playerChoice, computerChoice);
+    updateScoreboard();
+
     setTimeout(() => {
-        animateComputerChoice(computerChoice); // Delay computer's choice to simulate thinking
-        const roundResult = determineWinner(playerChoice, computerChoice);
-        updateGameData(roundResult, playerChoice, computerChoice);
-        updateScoreboard();
-        displayRoundFeedback(roundResult);
-        updateUIWithScores();
+        animateComputerChoice(computerChoice); // Animate computer's choice after delay
+        displayRoundFeedback(roundResult); // Show round result after computer's choice is revealed
+        updateUIWithScores(); // Update scores UI if needed
         saveGameDataToLocalStorage();
-    }, 3000); // a 3-second delay for the computer's choice animation
+    }, 3000); // 3-second delay for the computer's choice animation
 }
+
 
 /**
  * Generates a random choice for the computer from the available options.
@@ -297,7 +304,7 @@ function displayRoundFeedback(result) {
  * Updates the scoreboard with the current game data.
  */
 function updateScoreboard() {
-    const gameData = loadGameDataFromLocalStorage() || initializeGameData();
+    console.log('Updating scoreboard...');
 
     document.getElementById('player-rounds-played').textContent = gameData.playerStats.roundsPlayed || '-';
     document.getElementById('player-rounds-won').textContent = gameData.playerStats.roundsWon || '-';
@@ -316,6 +323,7 @@ function updateScoreboard() {
         document.getElementById(`player-${choice}`).textContent = playerChoiceCount;
         document.getElementById(`computer-${choice}`).textContent = computerChoiceCount;
     });
+
 }
 
 /**
