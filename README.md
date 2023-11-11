@@ -149,13 +149,10 @@ It must be known that i set out working on this project with a more complex scop
 
 ## Lighhouse Report & Validator Results
 ![Lighthouse Report](./assets/images/project_screenshots/lighthouse_report.png)
-![JS jshint]
-(./assets/images/project_screenshots/jshint.png)
-(./assets/images/project_screenshots/jshint_2.png)
-![HTML Validator]
-(./assets/images/project_screenshots/CSS_validator.png)
-![CSS Validator]
-(./assets/images/project_screenshots/HTML_validator.png)
+![JS jshint](./assets/images/project_screenshots/jshint.png)
+![JS jshint](./assets/images/project_screenshots/jshint_2.png)
+![HTML Validator](./assets/images/project_screenshots/CSS_validator.png)
+![CSS Validator](./assets/images/project_screenshots/HTML_validator.png)
 
 
 ## Credits
