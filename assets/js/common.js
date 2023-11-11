@@ -9,15 +9,9 @@ const screens = document.getElementsByClassName('screen');
 const modal = document.getElementById('instructions-modal');
 const closeButton = document.querySelector('.close');
 const playerChoiceDiv = document.getElementById('player-choice');
-const computerChoiceDiv = document.getElementById('computer-choice');
 const feedbackArea = document.getElementById('feedback-area');
 const sound = new Audio(`./assets/sound/sound.mp3`);
 const shufflingSound = new Audio('./assets/sound/shuffle.mp3');
-
-
-
-
-
 
 /**
  * Initializes the navigation menu and toggle functionality.
@@ -62,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     // Initialize the game
     initializeGame();
+    preloadImages();
     setupResetButtonListener();
 });
 
@@ -273,17 +268,20 @@ function handlePlayerChoice(playerChoice) {
     animatePlayerChoice(playerChoice);
     const computerChoice = generateComputerChoice();
     const roundResult = determineWinner(playerChoice, computerChoice);
+    animateComputerChoice(computerChoice); // Animate computer's choice after delay
 
     // Update the game data and scoreboard immediately
     updateGameData(roundResult, playerChoice, computerChoice);
-    updateScoreboard();
+    updateUIWithScores(); // Update scores UI
 
+    // Delay the display of the feedback message and sound by 2 seconds
     setTimeout(() => {
-        animateComputerChoice(computerChoice); // Animate computer's choice after delay
-        displayRoundFeedback(roundResult); // Show round result after computer's choice is revealed
-        updateUIWithScores(); // Update scores UI if needed
-        saveGameDataToLocalStorage();
-    }, 3000); // 3-second delay for the computer's choice animation
+        displayRoundFeedback(roundResult); // Show round result feedback
+        playFeedbackSound(); // Play the feedback sound
+        updateScoreboard(); // Update the scoreboard with the new data
+    }, 1000); // 2-second delay
+
+    saveGameDataToLocalStorage();
 }
 
 
@@ -350,29 +348,17 @@ function animatePlayerChoice(choice) {
  * @param {string} choice - The computer's chosen icon.
  */
 function animateComputerChoice(choice) {
-    // Ensure that the background remains
-    // Remove any previous choice icons if they exist
-    const previousChoiceIcon = computerChoiceDiv.querySelector('.choice-icon');
-    if (previousChoiceIcon) {
-        previousChoiceIcon.remove();
+    const computerChoiceDiv = document.getElementById('computer-choice');
+    const existingIcon = computerChoiceDiv.querySelector('.choice-icon');
+    if (existingIcon) {
+        existingIcon.remove(); // Remove the previous icon if it exists
     }
-
-    // Start shuffling animation with sound
-    startShufflingAnimation(computerChoiceDiv);
-
-    setTimeout(() => {
-        // Stop shuffling animation
-        stopShufflingAnimation(computerChoiceDiv);
-
-        // Create and append the new choice icon
-        const iconImg = document.createElement('img');
-        iconImg.src = `./assets/images/${choice}.png`;
-        iconImg.alt = choice;
-        iconImg.classList.add('choice-icon');
-        computerChoiceDiv.appendChild(iconImg);
-    }, 1000);
+    const iconImg = document.createElement('img');
+    iconImg.src = `./assets/images/${choice}.png`;
+    iconImg.alt = choice;
+    iconImg.classList.add('choice-icon');
+    computerChoiceDiv.appendChild(iconImg); // Append the new icon immediately
 }
-
 
 /**
  * Displays visual feedback for the round result (win, lose, tie).
@@ -386,8 +372,18 @@ function displayRoundFeedback(result) {
 function displayRoundFeedback(result) {
     feedbackArea.textContent = result === 'win' ? 'You won!' : result === 'lose' ? 'You lost!' : 'It\'s a tie!';
     feedbackArea.classList.add(`feedback-${result}`); // Add class to change background color
-
-    // Play sound based on the result
+}
+function preloadImages() {
+    const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+    choices.forEach(choice => {
+        const img = new Image();
+        img.src = `./assets/images/${choice}.png`;
+    });
+}
+// Function for playing feedback sounds
+function playFeedbackSound() {
+    // Play the sound for any result
+    const sound = new Audio('./assets/sound/sound.mp3');
     sound.play();
 }
 /**

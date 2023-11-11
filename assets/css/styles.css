@@ -276,14 +276,6 @@ h3 {
     /* Ensures icon is on top */
 }
 
-.player-choice-icon,
-.computer-choice-icon {
-    /* Style for positioning the icon over the background */
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
 /* Action area */
 .action-area {
