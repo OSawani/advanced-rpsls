@@ -430,6 +430,42 @@ h3 {
     border-radius: 5px;
 }
 
+/* Styles for Footer */
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #012536;
+    /* Deep navy color */
+    padding: 20px 0;
+    color: #fffcf1;
+    /* Off-white color for text */
+    text-align: center;
+}
+
+footer p {
+    margin: 10px 0 0;
+    font-size: 0.9em;
+}
+
+footer .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer .social-icons a {
+    color: #809a9f;
+    /* Soft blue-grey for icons */
+    transition: color 0.3s;
+}
+
+footer .social-icons a:hover {
+    color: #fffcf1;
+    /* Off-white color for hover state */
+}
+
 /* Media Query for Mobile Devices */
 @media (max-width: 768px) {
 

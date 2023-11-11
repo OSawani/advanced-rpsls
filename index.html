@@ -30,7 +30,7 @@
     <!-- Persistent Header Section -->
     <header>
       <!-- Navigation Menu -->
-      <nav class="navbar">
+      <nav class="navbar aria-label="Main navigation">
         <!-- Logo & Site Title linked to Main Screen + Other Nav Links-->
         <div class="nav-brand" id="navLogo">
           <a href="#main" aria-label="Back to homepage" class="nav-link">
@@ -47,6 +47,7 @@
           <button
             type="button"
             aria-label="toggle navigation"
+            aria-controls="navMenu" aria-expanded="false"
             class="nav-toggle"
             id="navToggle"
           >
@@ -84,10 +85,10 @@
             playing! Or learn the rules first!
           </p>
           <div class="button-container">
-            <button id="start-game" class="game-screen-button">
+            <button id="start-game" class="game-screen-button" aria-label="Start a game">
               Start Game
             </button>
-            <button class="modal-trigger game-screen-button">Rules</button>
+            <button class="modal-trigger game-screen-button" aria-label="Learn the game rules">Rules</button>
           </div>
         </div>
       </section>
@@ -117,7 +118,7 @@
             <div id="player-choice" class="choice-container">
               <!-- Background for Choice -->
               <img
-                class="background"
+                alt="Background image for player gameplay" class="background"
                 src="./assets/images/choice_background L.png"
               />
               <!-- Chosen icon will be displayed on top of background in the middle-->
@@ -128,7 +129,7 @@
             <h3>PC's Area</h3>
             <div id="computer-choice" class="choice-container">
               <!-- Background for Choice -->
-              <img
+              <img alt="Background image for PC gameplay"
                 class="background"
                 src="./assets/images/choice_background_R.png"
               />
@@ -266,16 +267,16 @@
             </tr>
           </tbody>
         </table>
-        <button id="reset-button" class="reset-button">Reset Scoreboard</button>
+        <button type="button" id="reset-button" class="reset-button">Reset Scoreboard</button>
       </section>
 
       <!-- Instruction Modal -->
-      <dialog id="instructions-modal" class="modal">
+      <dialog id="instructions-modal" class="modal" aria-labelledby="dialog-title" aria-describedby="dialog-desc">
         <div class="modal-content">
           <button type="button" class="close" aria-label="Close instructions">
             &times;
           </button>
-          <h2>Game Instructions</h2>
+          <h2 id="dialog-desc">Game Instructions</h2>
           <h3>🚀Here are the rules:</h3>
           <br />
           <div>
@@ -304,6 +305,34 @@
         </div>
       </dialog>
     </main>
+
+    <!-- Persistent Footer -->
+        <!-- Footer -->
+        <footer>
+            <!-- Social Media Links -->
+            <div class="social-icons">
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/osawani/" target="_blank" rel="noopener noreferrer"
+                        aria-label="Link to our LinkedIn profile">
+                        <img src="./assets/images/social_media_icons/linkedin-svgrepo-com.svg" alt="LinkedIn icon" width="24"
+                            height="24" />
+                    </a>
+                    <a href="https://twitter.com/osawani" target="_blank" rel="noopener noreferrer"
+                        aria-label="Link to our Twitter profile">
+                        <img src="./assets/images/social_media_icons/twitter-svgrepo-com.svg" alt="Twitter icon" width="24"
+                            height="24" />
+                    </a>
+                    <a href="https://www.humanetech.com/youth/social-media-and-the-brain" target="_blank"
+                        rel="noopener noreferrer" aria-label="Link to our Instagram profile">
+                        <img src="./assets/images/social_media_icons/twitter-svgrepo-com.svg" alt="Instagram icon" width="24"
+                            height="24" />
+                    </a>
+                </div>
+            </div>
+        
+            <!-- Copyright -->
+            <p>© 2023 Rock Paper Scissors Lizard Spock. All rights reserved.</p>
+        </footer>
 
     <!-- JS Scripts -->
     <script src="./assets/js/common.js"></script>
