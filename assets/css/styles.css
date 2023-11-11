@@ -15,7 +15,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to bottom, #e7eae5, #bbced2);
+    background: linear-gradient(to bottom, #fffcf0, #819aa0, #002735);
     padding: 1em 2em;
 }
 
@@ -104,6 +104,7 @@ body {
     display: none;
     /* Hide all screens by default */
     padding: 2em;
+    margin-bottom: 20px;
     animation: fadeIn 0.5s ease-in-out forwards;
     /* Fade in animation for when screen becomes active */
 }
@@ -327,6 +328,17 @@ h3 {
     margin: 10px;
     border: none;
     cursor: pointer;
+
+    background-color: #002735;
+    color: #fffcf0;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
     transition: background-color 0.2s ease;
 }
 
@@ -436,7 +448,7 @@ footer {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #012536;
+    background: linear-gradient(to top, #fffcf0, #819aa0, #002735);
     /* Deep navy color */
     padding: 20px 0;
     color: #fffcf1;
@@ -517,7 +529,7 @@ footer .social-icons a:hover {
 
     /* When nav is toggled */
     .nav-active {
-        background: linear-gradient(to top, #e7eae5, #bbced2);
+        background: linear-gradient(to top, #fffcf0, #819aa0, #002735);
         padding: 1em 2em;
         top: 72px;
         z-index: 999;

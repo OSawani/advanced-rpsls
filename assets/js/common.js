@@ -384,7 +384,6 @@ function preloadImages() {
 function playFeedbackSound() {
     // Play the sound for any result
     const sound = new Audio('./assets/sound/sound.mp3');
-    sound.play();
 }
 /**
  * Starts the shuffling animation in the computer's section.
