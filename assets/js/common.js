@@ -8,6 +8,15 @@ const modalTriggers = document.querySelectorAll('.modal-trigger');
 const screens = document.getElementsByClassName('screen');
 const modal = document.getElementById('instructions-modal');
 const closeButton = document.querySelector('.close');
+const playerChoiceDiv = document.getElementById('player-choice');
+const computerChoiceDiv = document.getElementById('computer-choice');
+const feedbackArea = document.getElementById('feedback-area');
+const sound = new Audio(`./assets/sound/sound.mp3`);
+const shufflingSound = new Audio('./assets/sound/shuffle.mp3');
+
+
+
+
 
 
 /**
@@ -326,27 +335,82 @@ function updateUIWithScores() {
  * @param {string} choice - The player's chosen icon.
  */
 function animatePlayerChoice(choice) {
-    // Code to animate player's choice
-    // Example: document.getElementById('player-choice').classList.add('animate-choice');
+    const iconImg = document.createElement('img');
+    iconImg.src = `./assets/images/${choice}.png`;
+    iconImg.alt = choice;
+    iconImg.classList.add('choice-icon'); // Ensure this class positions the image correctly
+    playerChoiceDiv.appendChild(iconImg);
+
+    // Optional: Add animation class for entry effect
+    iconImg.classList.add('animate-entry');
 }
+
 /**
  * Delays and then animates the computer's chosen icon in the computer's section.
  * @param {string} choice - The computer's chosen icon.
  */
 function animateComputerChoice(choice) {
-    // Code to delay and animate computer's choice
-    // Example: setTimeout(() => { /* animation code */ }, 3000);
+    // Ensure that the background remains
+    // Remove any previous choice icons if they exist
+    const previousChoiceIcon = computerChoiceDiv.querySelector('.choice-icon');
+    if (previousChoiceIcon) {
+        previousChoiceIcon.remove();
+    }
+
+    // Start shuffling animation with sound
+    startShufflingAnimation(computerChoiceDiv);
+
+    setTimeout(() => {
+        // Stop shuffling animation
+        stopShufflingAnimation(computerChoiceDiv);
+
+        // Create and append the new choice icon
+        const iconImg = document.createElement('img');
+        iconImg.src = `./assets/images/${choice}.png`;
+        iconImg.alt = choice;
+        iconImg.classList.add('choice-icon');
+        computerChoiceDiv.appendChild(iconImg);
+    }, 1000);
 }
+
+
 /**
  * Displays visual feedback for the round result (win, lose, tie).
  * @param {string} result - The result of the round.
  */
 function displayRoundFeedback(result) {
-    const feedbackArea = document.getElementById('feedback-area');
     // Example feedback display
     feedbackArea.textContent = result === 'win' ? 'You won!' : result === 'lose' ? 'You lost!' : 'It\'s a tie!';
     // Additional animation or styling changes can be added here
 }
+function displayRoundFeedback(result) {
+    feedbackArea.textContent = result === 'win' ? 'You won!' : result === 'lose' ? 'You lost!' : 'It\'s a tie!';
+    feedbackArea.classList.add(`feedback-${result}`); // Add class to change background color
+
+    // Play sound based on the result
+    sound.play();
+}
+/**
+ * Starts the shuffling animation in the computer's section.
+ * @param {Element} computerChoiceDiv - The computer choice container element.
+ */
+function startShufflingAnimation(computerChoiceDiv) {
+    // Example implementation: Add a class to start an animation
+    computerChoiceDiv.classList.add('shuffling-animation');
+    // Play shuffling sound
+    shufflingSound.play();
+}
+/**
+ * Stops the shuffling animation in the computer's section and clears any existing choices.
+ * @param {Element} computerChoiceDiv - The computer choice container element.
+ */
+function stopShufflingAnimation(computerChoiceDiv) {
+    // Remove the class to stop the animation
+    computerChoiceDiv.classList.remove('shuffling-animation');
+    // Clear any existing choices
+    computerChoiceDiv.innerHTML = '';
+}
+
 
 
 // 5. Scoreboard Management

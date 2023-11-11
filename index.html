@@ -87,7 +87,7 @@
             <button id="start-game" class="game-screen-button">
               Start Game
             </button>
-            <button class="modal-trigger game-screen-button">Game Rules</button>
+            <button class="modal-trigger game-screen-button">Rules</button>
           </div>
         </div>
       </section>
@@ -95,19 +95,18 @@
       <!-- Play Screen -->
       <section id="play" class="screen">
         <h2>Let's Play! Choose Difficulty to Get Going.</h2>
-        <!-- 1. Feedback Area -->
-        <div id="feedback-area" class="setting">
-          <div id="end-game-message"></div>
-        </div>
 
-        <!-- 2. Game and Round Scores Area -->
+        <!-- 1. Game and Round Scores Area -->
         <div>
           <h3 class="sub-title">Game Score</h3>
+          <!-- 2. Feedback Area -->
+          <div id="feedback-area" class="setting">
+            <div id="end-game-message"></div>
+          </div>
           <div id="game-score" class="score">
             <span id="player-game-score">User: 0</span>
             <span id="computer-game-score">Computer: 0</span>
           </div>
-          <div id="end-game-message"></div>
         </div>
 
         <!-- 3. Gameplay Action Area  -->
@@ -117,7 +116,10 @@
             <h3>User's Area</h3>
             <div id="player-choice" class="choice-container">
               <!-- Background for Choice -->
-              <img src="./assets/images/choice_background L.png" />
+              <img
+                class="background"
+                src="./assets/images/choice_background L.png"
+              />
               <!-- Chosen icon will be displayed on top of background in the middle-->
             </div>
           </div>
@@ -126,7 +128,10 @@
             <h3>PC's Area</h3>
             <div id="computer-choice" class="choice-container">
               <!-- Background for Choice -->
-              <img src="./assets/images/choice_background_R.png" />
+              <img
+                class="background"
+                src="./assets/images/choice_background_R.png"
+              />
               <!-- Chosen icon will be displayed on top of background in the middle-->
             </div>
           </div>
@@ -271,9 +276,31 @@
             &times;
           </button>
           <h2>Game Instructions</h2>
-          <p>Here are the rules for Rock, Paper, Scissors, Lizard, Spock.</p>
-          <!-- Actual game instructions here go will be included here -->
-          <div></div>
+          <h3>🚀Here are the rules:</h3>
+          <br />
+          <div>
+            <ul class="rules-list">
+              <li>Rock ✊ <strong>crushes</strong> Scissors ✂️</li>
+              <li>Scissors ✂️ <strong>cuts</strong> Paper 📃</li>
+              <li>Paper 📃 <strong>covers</strong> Rock ✊</li>
+              <li>Rock ✊ <strong>crushes</strong> Lizard 🦎</li>
+              <li>Lizard 🦎 <strong>poisons</strong> Spock 🖖</li>
+              <li>Spock 🖖 <strong>smashes</strong> Scissors ✂️</li>
+              <li>Scissors ✂️ <strong>decapitate</strong> Lizard 🦎</li>
+              <li>Lizard 🦎 <strong>eats</strong> Paper 📃</li>
+              <li>Paper 📃 <strong>disproves</strong> Spock 🖖</li>
+              <li>
+                Spock 🖖 <strong>vaporizes</strong> Rock ✊ (phew, that's
+                intense!)
+              </li>
+            </ul>
+            <br />
+            <p>Shake hands, count to three, and may the best nerd win! 💥</p>
+            <p>
+              Live long and prosper, and may your
+              Rock-Paper-Scissors-Lizard-Spock adventures be legendary! 🎉
+            </p>
+          </div>
         </div>
       </dialog>
     </main>

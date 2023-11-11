@@ -198,6 +198,9 @@ body {
     }
 }
 
+.rules-list {
+    list-style: disc;
+}
 
 /* Style for Play Screen */
 /* Headings - centered by default due to body styles */
@@ -253,12 +256,33 @@ h3 {
     height: 150px;
 }
 
-.choice-container img {
+.choice-container img.background {
     width: 100%;
     height: auto;
     position: absolute;
     top: 0;
     left: 0;
+}
+
+.choice-icon {
+    /* Style for positioning the icon over the background */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 50%;
+    max-height: 50%;
+    z-index: 10;
+    /* Ensures icon is on top */
+}
+
+.player-choice-icon,
+.computer-choice-icon {
+    /* Style for positioning the icon over the background */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* Action area */
@@ -363,6 +387,57 @@ h3 {
     gap: 5px;
 }
 
+@keyframes shuffling {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-20px);
+    }
+
+    50% {
+        transform: translateX(20px);
+    }
+
+    75% {
+        transform: translateX(-10px);
+    }
+}
+
+.shuffling-animation {
+    animation: shuffling 0.5s ease-in-out infinite;
+}
+
+.feedback-win {
+    background-color: #a0d2af;
+    /* Soft green variation */
+    animation: fade-in-out 3s ease;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.feedback-lose {
+    background-color: #d1a0a2;
+    /* Soft red variation */
+    animation: fade-in-out 3s ease;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.feedback-tie {
+    background-color: #a0a0a0;
+    /* Soft grey variation */
+    animation: fade-in-out 3s ease;
+    margin-top: 5px;
+    text-align: center;
+    border-radius: 5px;
+}
+
 /* Media Query for Mobile Devices */
 @media (max-width: 768px) {
 
@@ -448,6 +523,11 @@ h3 {
         margin: 10px auto;
     }
 
+    /* Game Area Buttons */
+    .game-screen-button {
+        margin: 5px;
+    }
+
     /* Adjustments for Scoreboard */
     .scoreboard-table {
         font-size: 14px;
@@ -463,5 +543,6 @@ h3 {
     .button-container {
         flex-direction: column;
         align-items: center;
+        gap: 2px;
     }
 }
