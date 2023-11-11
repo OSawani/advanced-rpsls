@@ -44,6 +44,10 @@ body {
     font-size: 1em;
 }
 
+.sub-title {
+    margin: 2em;
+}
+
 /* Adjustments for the navigation menu */
 .nav-menu {
     list-style: none;
@@ -70,6 +74,11 @@ body {
 
 .nav-link:hover {
     color: #012536;
+}
+
+.introduction {
+    padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 /* Hamburger menu - hidden by default */
@@ -223,7 +232,8 @@ h3 {
     background-color: #819aa0;
     color: #fffcf0;
     padding: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 2em;
+    margin-top: 10px;
     border-radius: 5px;
 }
 
@@ -266,15 +276,27 @@ h3 {
     border: 2px solid #002735;
     padding: 10px;
     width: 100px;
+    /* Fixed size */
     height: 100px;
+    /* Fixed size */
     margin: 5px;
     cursor: pointer;
     transition: transform 0.2s ease;
+    display: flex;
+    /* Use flex to center the image inside the button */
+    align-items: center;
+    /* Center image vertically */
+    justify-content: center;
+    /* Center image horizontally */
 }
 
 .choice-button img {
-    width: 80%;
-    height: auto;
+    max-width: 100%;
+    /* Limit image size to not exceed the button */
+    max-height: 100%;
+    /* Limit image size to not exceed the button */
+    object-fit: contain;
+    /* Ensure the image's aspect ratio is preserved */
 }
 
 .choice-button:hover {
@@ -333,6 +355,13 @@ h3 {
     margin-right: auto;
 }
 
+.button-container {
+    display: flex;
+    flex-direction: row;
+    /* Center horizontally and add equal spacing between buttons */
+    justify-content: center;
+    gap: 5px;
+}
 
 /* Media Query for Mobile Devices */
 @media (max-width: 768px) {
@@ -392,16 +421,27 @@ h3 {
     }
 
     /* Game Screen Adjustments*/
-    .choices-container,
-    .action-area {
-        flex-direction: column;
-    }
 
     .score {
         flex-direction: column;
     }
 
-    .choice-button,
+    .choice-button {
+        width: 60px;
+        /* Thumb-sized width */
+        height: 60px;
+        /* Thumb-sized height */
+        padding: 5px;
+        /* Reduced padding on smaller screens */
+    }
+
+    .choice-button img {
+        width: auto;
+        /* Allow the image to scale within the button */
+        height: auto;
+        /* Allow the image height to adjust automatically */
+    }
+
     .game-area-button {
         width: 80%;
         /* Full width for mobile */
@@ -417,5 +457,11 @@ h3 {
     .reset-button {
         padding: 8px 15px;
         /* Smaller padding for the reset button on mobile */
+    }
+
+    /* Stack buttons vertically on mobile screens */
+    .button-container {
+        flex-direction: column;
+        align-items: center;
     }
 }
