@@ -33,7 +33,7 @@
       <nav class="navbar">
         <!-- Logo & Site Title linked to Main Screen + Other Nav Links-->
         <div class="nav-brand" id="navLogo">
-          <a href="#main" aria-label="Back to homepage">
+          <a href="#main" aria-label="Back to homepage" class="nav-link">
             <!-- Logo as a PNG to preserve photographic elements and intricate patterns -->
             <img
               src="./assets/images/logo.png"
@@ -57,7 +57,7 @@
         <!-- A List of Navigation Links -->
         <ul class="nav-menu" id="navMenu">
           <li class="nav-item">
-            <a href="#instructionsModal" class="nav-link modal-trigger"
+            <a href="#instructions-modal" class="nav-link modal-trigger"
               >Game Rules</a
             >
           </li>
@@ -78,13 +78,13 @@
         <!-- 1. Welcome Area -->
         <div>
           <h1>Welcome to Rock, Paper, Scissors, Lizard, Spock!</h1>
-          <p>
-            Experience the classic game with a twist. Select Rock, Paper,
-            Scissors, Lizard, or Spock and try to beat the computer. Click below
-            to start playing! Or learn the rules first!
+          <p class="introduction">
+            Experience the classic game with a twist. Rock, Paper, Scissors,
+            Lizard, or Spock and try to beat the computer. Click below to start
+            playing! Or learn the rules first!
           </p>
-          <button>Start Game</button>
-          <button>Game Rules</button>
+          <button id="start-game">Start Game</button>
+          <button class="modal-trigger">Game Rules</button>
         </div>
       </section>
 
@@ -182,13 +182,19 @@
         <!-- Navigation Buttons Area -->
         <div>
           <!-- Rules Button -->
-          <button type="button" class="game-screen-button">
+          <button type="button" class="game-screen-button modal-trigger">
             Forgot the Rules?
           </button>
           <!-- Home Button -->
-          <button type="button" class="game-screen-button">Home</button>
+          <button type="button" id="home-button" class="game-screen-button">
+            Home
+          </button>
           <!-- Scoreboard Button -->
-          <button type="button" class="game-screen-button">
+          <button
+            type="button"
+            id="scoreboard-button"
+            class="game-screen-button"
+          >
             Player Scoreboard
           </button>
         </div>
@@ -257,7 +263,7 @@
       </section>
 
       <!-- Instruction Modal -->
-      <dialog id="instructionsModal" class="modal">
+      <dialog id="instructions-modal" class="modal">
         <div class="modal-content">
           <button type="button" class="close" aria-label="Close instructions">
             &times;
@@ -269,9 +275,6 @@
         </div>
       </dialog>
     </main>
-
-    <!-- Persistent Footer Section -->
-    <footer></footer>
 
     <!-- JS Scripts -->
     <script src="./assets/js/common.js"></script>

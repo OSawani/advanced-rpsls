@@ -1,9 +1,14 @@
-/*
-I chose to structure the code into distinct modules
-for better organization and maintainability.
+/**
+ * Declare constants for DOM elements
+ */
+const navMenu = document.getElementById('navMenu');
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementsByClassName('nav-link');
+const modalTriggers = document.querySelectorAll('.modal-trigger');
+const screens = document.getElementsByClassName('screen');
+const modal = document.getElementById('instructions-modal');
+const closeButton = document.querySelector('.close');
 
-This module will deal with interactivity for navigation and landing page.
-*/
 
 /**
  * Initializes the navigation menu and toggle functionality.
@@ -16,27 +21,36 @@ document.addEventListener('DOMContentLoaded', function (event) {
      * Toggles the 'nav-active' class on click for the hamburger menu.
      * @function
      */
-    let navMenu = document.getElementById('navMenu');
-    let navToggle = document.getElementById('navToggle');
     navToggle.addEventListener('click', function () {
         navMenu.classList.toggle('nav-active');
     });
 
     // Attach the navigateToScreen or openModal depending on class of navigation link
-    let navLinks = document.getElementsByClassName('nav-link');
     Array.from(navLinks).forEach(function (link) {
-        if (link.classList.contains('modal-trigger')) {
-            link.addEventListener('click', openModal);
-        } else {
-            link.addEventListener('click', navigateToScreen);
-        }
+        link.addEventListener('click', function (event) {
+            if (link.classList.contains('modal-trigger')) {
+                openModal();
+            } else {
+                navigateToScreen(event);
+            }
+        });
     });
 
     // querySelector to select all modal trigger element, i.e. nav-link, button on main & play
-    let modalTriggers = document.querySelectorAll('.modal-trigger');
     modalTriggers.forEach(trigger => {
         trigger.addEventListener('click', openModal);
     });
+
+    // Event listener for Home button
+    document.getElementById('home-button').addEventListener('click', function () {
+        navigateToScreenById('main');
+    });
+
+    // Event listener for Scoreboard button
+    document.getElementById('scoreboard-button').addEventListener('click', function () {
+        navigateToScreenById('scoreboard');
+    });
+
     // Initialize the game
     initializeGame();
     setupResetButtonListener();
@@ -54,19 +68,30 @@ function navigateToScreen(event) {
     navMenu.classList.remove('nav-active');
 
     // Get the target screen based on the clicked link's href
-    let targetId = event.target.getAttribute('href');
+    let targetId = event.currentTarget.getAttribute('href');
     let targetScreen = document.getElementById(targetId.substring(1)); // Remove the '#' character from the ID
 
     // Hide all screens and show the target screen
-    let screens = document.getElementsByClassName('screen');
     Array.from(screens).forEach(function (screen) {
         screen.classList.remove('active');
     });
     targetScreen.classList.add('active');
 };
 
-let modal = document.getElementById('instructionsModal');
-let closeButton = document.querySelector('.close');
+/**
+ * Navigates to a screen based on the given screen ID.
+ * @param {string} screenId - The ID of the target screen.
+ */
+function navigateToScreenById(screenId) {
+    let targetScreen = document.getElementById(screenId);
+
+    // Hide all screens and show the target screen
+    Array.from(screens).forEach(function (screen) {
+        screen.classList.remove('active');
+    });
+    targetScreen.classList.add('active');
+}
+
 // Function to open modal
 function openModal() {
     // Close the hamburger menu if it's open
@@ -84,6 +109,32 @@ window.addEventListener('click', (event) => {
     if (event.target === modal) {
         closeModal();
     }
+});
+
+/**
+ * Typewriter effect for intro text
+ */
+// Typewriter effect function
+const typeWriter = (element, text, i = 0, delay = 75) => {
+    if (i < text.length) {
+        element.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(() => typeWriter(element, text, i, delay), delay);
+    }
+};
+// Selecting the introduction paragraph
+const mainText = document.querySelector('#main .introduction');
+// Clear text content first
+mainText.textContent = '';
+// Apply the typing effect to the paragraph
+typeWriter(mainText, 'Experience the classic game with a twist. Select Rock, Paper, Scissors, Lizard, or Spock and try to beat the computer. Click below to start playing!', 0, 50);
+const startGameButton = document.getElementById('start-game');
+
+startGameButton.addEventListener('click', () => {
+    // Play screen has an ID of 'play'
+    const playScreen = document.getElementById('play');
+    document.querySelector('.screen.active').classList.remove('active');
+    playScreen.classList.add('active');
 });
 
 
@@ -172,7 +223,6 @@ function updateGameData(roundResult, playerChoice, computerChoice) {
             break;
     }
     saveGameDataToLocalStorage(); // Save updated data to local storage
-    console.log('Game data updated:', gameData);
 }
 /**
  * Resets the game data to its initial state, updates the UI accordingly, and clears any feedback messages.
@@ -304,7 +354,6 @@ function displayRoundFeedback(result) {
  * Updates the scoreboard with the current game data.
  */
 function updateScoreboard() {
-    console.log('Updating scoreboard...');
 
     document.getElementById('player-rounds-played').textContent = gameData.playerStats.roundsPlayed || '-';
     document.getElementById('player-rounds-won').textContent = gameData.playerStats.roundsWon || '-';
