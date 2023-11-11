@@ -297,6 +297,41 @@ h3 {
     background-color: #002735;
 }
 
+/* Scoreboard Styles */
+.scoreboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.scoreboard-header th {
+    background-color: #819aa0;
+    color: #fffcf0;
+    text-align: center;
+}
+
+.scoreboard-row td {
+    background-color: #fffcf0;
+    color: #002735;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid #002735;
+}
+
+.reset-button {
+    background-color: #002735;
+    color: #fffcf0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    /* Center button */
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 /* Media Query for Mobile Devices */
@@ -371,5 +406,16 @@ h3 {
         width: 80%;
         /* Full width for mobile */
         margin: 10px auto;
+    }
+
+    /* Adjustments for Scoreboard */
+    .scoreboard-table {
+        font-size: 14px;
+        /* Smaller font size for mobile */
+    }
+
+    .reset-button {
+        padding: 8px 15px;
+        /* Smaller padding for the reset button on mobile */
     }
 }

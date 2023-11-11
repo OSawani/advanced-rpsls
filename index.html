@@ -91,22 +91,13 @@
       <!-- Play Screen -->
       <section id="play" class="screen">
         <h2>Let's Play! Choose Difficulty to Get Going.</h2>
-        <!-- 1. Game Settings Area -->
-        <div id="game-mode" class="setting">
-          <label for="game-mode-select">Game Difficulty</label>
-          <select id="game-mode-select">
-            <option value="single">Single Game</option>
-            <option value="best-of-three">Best of Theree</option>
-          </select>
+        <!-- 1. Feedback Area -->
+        <div id="feedback-area" class="setting">
+          <div id="end-game-message"></div>
         </div>
 
         <!-- 2. Game and Round Scores Area -->
         <div>
-          <h3>Round Score</h3>
-          <div id="round-score" class="score">
-            <span id="player-round-score">User: 0</span>
-            <span id="computer-round-score">Computer: 0</span>
-          </div>
           <h3>Game Score</h3>
           <div id="game-score" class="score">
             <span id="player-game-score">User: 0</span>
@@ -206,6 +197,63 @@
       <!-- Scoreboard Screen -->
       <section id="scoreboard" class="screen">
         <h2>Scoreboard</h2>
+        <table id="stats" class="scoreboard-table">
+          <thead>
+            <tr class="scoreboard-header">
+              <th></th>
+              <th>Player</th>
+              <th>Computer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="scoreboard-row">
+              <td>Rounds Played</td>
+              <td id="player-rounds-played" class="centered-dash">-</td>
+              <td id="computer-rounds-played" class="centered-dash">-</td>
+            </tr>
+            <tr class="scoreboard-row">
+              <td>Rounds Won</td>
+              <td id="player-rounds-won" class="centered-dash">-</td>
+              <td id="computer-rounds-won" class="centered-dash">-</td>
+            </tr>
+            <tr class="scoreboard-row">
+              <td>Rounds Lost</td>
+              <td id="player-rounds-lost" class="centered-dash">-</td>
+              <td id="computer-rounds-lost" class="centered-dash">-</td>
+            </tr>
+            <tr class="scoreboard-row">
+              <td>Rounds Tied</td>
+              <td id="player-rounds-tied" class="centered-dash">-</td>
+              <td id="computer-rounds-tied" class="centered-dash">-</td>
+            </tr>
+            <tr class="scoreboard-row">
+              <td>Rock Rounds</td>
+              <td id="player-rock" class="centered-dash">-</td>
+              <td id="computer-rock" class="centered-dash">-</td>
+            </tr>
+            <tr class="scoreboard-row">
+              <td>Paper Rounds</td>
+              <td id="player-paper" class="centered-dash">-</td>
+              <td id="computer-paper" class="centered-dash">-</td>
+            </tr>
+            <tr class="scoreboard-row">
+              <td>Scissors Rounds</td>
+              <td id="player-scissors" class="centered-dash">-</td>
+              <td id="computer-scissors" class="centered-dash">-</td>
+            </tr>
+            <tr class="scoreboard-row">
+              <td>Lizard Rounds</td>
+              <td id="player-lizard" class="centered-dash">-</td>
+              <td id="computer-lizard" class="centered-dash">-</td>
+            </tr>
+            <tr class="scoreboard-row">
+              <td>Spock Rounds</td>
+              <td id="player-spock" class="centered-dash">-</td>
+              <td id="computer-spock" class="centered-dash">-</td>
+            </tr>
+          </tbody>
+        </table>
+        <button id="reset-button" class="reset-button">Reset Scoreboard</button>
       </section>
 
       <!-- Instruction Modal -->
@@ -227,8 +275,5 @@
 
     <!-- JS Scripts -->
     <script src="./assets/js/common.js"></script>
-    <script src="./assets/js/data-module.js"></script>
-    <script src="./assets/js/game-logic-module.js"></script>
-    <script src="./assets/js/ui-module.js"></script>
   </body>
 </html>

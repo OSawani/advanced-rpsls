@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
     modalTriggers.forEach(trigger => {
         trigger.addEventListener('click', openModal);
     });
+    // Initialize the game
+    initializeGame();
+    setupResetButtonListener();
 });
 
 
@@ -83,10 +86,253 @@ window.addEventListener('click', (event) => {
     }
 });
 
+
+/* 
+Game Logic is split to four main parts
+1. Gameplay Initialisation
+2. Data Management
+3. Game Interaction
+4. UI Management
+5. Scoreboard Management
+*/
+
+// 1. Game Initialisation 
+/**
+ * Initializes the game. 
+ * Checks local storage for saved game data and sets up the game accordingly.
+ */
 function initializeGame() {
-    initializeGameState(); // Initialize game state
-    loadSavedGameData(); // Load saved game data, if any
-    initializeUIElements(); // Setup initial state of UI elements
-    setupChoiceListeners(); // Setup UI listeners for player choices
+    let savedData = loadGameDataFromLocalStorage();
+    if (savedData) {
+        gameData = savedData;
+    } else {
+        gameData = initializeGameData();
+    }
+    setupChoiceListeners();
+    updateUIWithScores();
+    updateScoreboard(); // Display initial scoreboard state
 }
-document.addEventListener('DOMContentLoaded', initializeGame);
+
+// 2. Data Management
+/**
+ * Loads game data from local storage.
+ * @returns {Object|null} The loaded game data or null if no data is found.
+ */
+function loadGameDataFromLocalStorage() {
+    const data = localStorage.getItem('gameData');
+    return data ? JSON.parse(data) : null;
+}
+/**
+ * Saves the current game data to local storage.
+ */
+function saveGameDataToLocalStorage() {
+    localStorage.setItem('gameData', JSON.stringify(gameData));
+}
+/**
+ * Initializes new game data with default values.
+ * @returns {Object} The initialized game data.
+ */
+function initializeGameData() {
+    return {
+        playerStats: {
+            roundsPlayed: 0,
+            roundsWon: 0,
+            roundsLost: 0,
+            roundsTied: 0,
+            choices: { rock: 0, paper: 0, scissors: 0, lizard: 0, spock: 0 }
+        },
+        computerStats: {
+            roundsPlayed: 0,
+            roundsWon: 0,
+            roundsLost: 0,
+            roundsTied: 0,
+            choices: { rock: 0, paper: 0, scissors: 0, lizard: 0, spock: 0 }
+        }
+    };
+}
+/**
+ * Updates the game data based on the outcome of a round.
+ * @param {string} roundResult - The result of the round ('win', 'lose', 'tie').
+ * @param {string} playerChoice - The choice made by the player.
+ * @param {string} computerChoice - The choice made by the computer.
+ */
+function updateGameData(roundResult, playerChoice, computerChoice) {
+    gameData.playerStats.choices[playerChoice]++;
+    gameData.computerStats.choices[computerChoice]++;
+    switch (roundResult) {
+        case 'win':
+            gameData.playerStats.roundsWon++;
+            break;
+        case 'lose':
+            gameData.computerStats.roundsWon++;
+            break;
+        case 'tie':
+            gameData.playerStats.roundsTied++;
+            gameData.computerStats.roundsTied++;
+            break;
+    }
+}
+/**
+ * Resets the game data to its initial state, updates the UI accordingly, and clears any feedback messages.
+ */
+function resetGameData() {
+    gameData = initializeGameData();
+    // Clear the data in local storage
+    localStorage.removeItem('gameData');
+
+    // Update the UI to reflect the reset data
+    updateUIWithScores();
+    updateScoreboard();
+    document.getElementById('feedback-area').textContent = ''; // Clear feedback message
+}
+
+
+
+// 3. Game Interaction
+/**
+ * Sets up event listeners for each choice button.
+ */
+function setupChoiceListeners() {
+    document.querySelectorAll('.choice-button').forEach(button => {
+        button.addEventListener('click', () => {
+            const playerChoice = button.getAttribute('data-choice');
+            handlePlayerChoice(playerChoice);
+            updateScoreboard();
+        });
+    });
+}
+/**
+ * Handles the player's choice by initiating a round of the game. It animates the player's choice, 
+ * generates the computer's choice, determines the round outcome, updates the game data, 
+ * and manages the UI updates for the round results.
+ * @param {string} playerChoice - The choice made by the player.
+ */
+function handlePlayerChoice(playerChoice) {
+    animatePlayerChoice(playerChoice);
+    const computerChoice = generateComputerChoice();
+    setTimeout(() => {
+        animateComputerChoice(computerChoice); // Delay computer's choice to simulate thinking
+        const roundResult = determineWinner(playerChoice, computerChoice);
+        updateGameData(roundResult, playerChoice, computerChoice);
+        updateScoreboard();
+        displayRoundFeedback(roundResult);
+        updateUIWithScores();
+        saveGameDataToLocalStorage();
+    }, 3000); // a 3-second delay for the computer's choice animation
+}
+
+/**
+ * Generates a random choice for the computer from the available options.
+ * @returns {string} The computer's choice.
+ */
+function generateComputerChoice() {
+    const choices = ['rock', 'paper', 'scissors', 'lizard', 'spock'];
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
+}
+/**
+ * Determines the winner of a round based on the choices of the player and the computer.
+ * @param {string} playerChoice - The player's choice.
+ * @param {string} computerChoice - The computer's choice.
+ * @returns {string} The result of the round ('win', 'lose', 'tie').
+ */
+function determineWinner(playerChoice, computerChoice) {
+    const winningCombinations = {
+        rock: ['scissors', 'lizard'],
+        paper: ['rock', 'spock'],
+        scissors: ['paper', 'lizard'],
+        lizard: ['spock', 'paper'],
+        spock: ['scissors', 'rock']
+    };
+
+    if (playerChoice === computerChoice) {
+        return 'tie';
+    } else if (winningCombinations[playerChoice].includes(computerChoice)) {
+        return 'win';
+    } else {
+        return 'lose';
+    }
+}
+
+
+// 4. UI Management
+/**
+ * Updates the user interface with the current game scores.
+ */
+function updateUIWithScores() {
+    document.getElementById('player-game-score').textContent = `User: ${gameData.playerStats.roundsWon}`;
+    document.getElementById('computer-game-score').textContent = `Computer: ${gameData.computerStats.roundsWon}`;
+    // Additional code to update other UI elements if necessary
+}
+/**
+ * Animates the player's chosen icon in the player's section.
+ * @param {string} choice - The player's chosen icon.
+ */
+function animatePlayerChoice(choice) {
+    // Code to animate player's choice
+    // Example: document.getElementById('player-choice').classList.add('animate-choice');
+}
+/**
+ * Delays and then animates the computer's chosen icon in the computer's section.
+ * @param {string} choice - The computer's chosen icon.
+ */
+function animateComputerChoice(choice) {
+    // Code to delay and animate computer's choice
+    // Example: setTimeout(() => { /* animation code */ }, 3000);
+}
+/**
+ * Displays visual feedback for the round result (win, lose, tie).
+ * @param {string} result - The result of the round.
+ */
+function displayRoundFeedback(result) {
+    const feedbackArea = document.getElementById('feedback-area');
+    // Example feedback display
+    feedbackArea.textContent = result === 'win' ? 'You won!' : result === 'lose' ? 'You lost!' : 'It\'s a tie!';
+    // Additional animation or styling changes can be added here
+}
+
+
+// 5. Scoreboard Management
+/**
+ * Updates the scoreboard with the current game data.
+ */
+function updateScoreboard() {
+    const gameData = loadGameDataFromLocalStorage() || initializeGameData();
+
+    document.getElementById('player-rounds-played').textContent = gameData.playerStats.roundsPlayed || '-';
+    document.getElementById('player-rounds-won').textContent = gameData.playerStats.roundsWon || '-';
+    document.getElementById('player-rounds-lost').textContent = gameData.playerStats.roundsLost || '-';
+    document.getElementById('player-rounds-tied').textContent = gameData.playerStats.roundsTied || '-';
+
+    document.getElementById('computer-rounds-played').textContent = gameData.computerStats.roundsPlayed || '-';
+    document.getElementById('computer-rounds-won').textContent = gameData.computerStats.roundsWon || '-';
+    document.getElementById('computer-rounds-lost').textContent = gameData.computerStats.roundsLost || '-';
+    document.getElementById('computer-rounds-tied').textContent = gameData.computerStats.roundsTied || '-';
+
+    // Populate the choices data for both player and computer
+    ['rock', 'paper', 'scissors', 'lizard', 'spock'].forEach(choice => {
+        const playerChoiceCount = gameData.playerStats.choices[choice] || '-';
+        const computerChoiceCount = gameData.computerStats.choices[choice] || '-';
+        document.getElementById(`player-${choice}`).textContent = playerChoiceCount;
+        document.getElementById(`computer-${choice}`).textContent = computerChoiceCount;
+    });
+}
+
+/**
+ * Sets up an event listener for the reset button. On click, it confirms the reset action 
+ * and resets the game data if confirmed.
+ */
+function setupResetButtonListener() {
+    const resetButton = document.getElementById('reset-button');
+    resetButton.addEventListener('click', () => {
+        const isConfirmed = confirm('Are you sure you want to reset the scoreboard? This action cannot be undone.');
+        if (isConfirmed) {
+            resetGameData();
+            updateScoreboard();
+        }
+    });
+}
+
+
+
+
