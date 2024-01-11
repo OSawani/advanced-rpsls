@@ -1,6 +1,7 @@
 # ![Game Logo Placeholder](./assets/images/logo.png)
 
 # Rock, Paper, Scissors, Lizard, Spock Game
+Visit the application's URL: [Rock, Paper, Scissors, Lizard, Spock Game](https://osawani.github.io/advanced-rpsls/)
 
 ## Table of Contents
 
